@@ -56,7 +56,7 @@ function valid_captcha($reCaptchaResponse) {
 	// check secret key
  	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$GLOBALS['secret']."&response=".$reCaptchaResponse."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	
-	if($response == null && $response->success == false){
+	if($response == null || $response.success != true){
 		throw new Exception("Captcha Failed");
 	}
 }
