@@ -1,7 +1,8 @@
 <?php
 // your secret key
 $secret = "6LfZDw0TAAAAAM73HeWJNSjC3DtuOwNcp_KLhRP7";
-$emailTo = "christine.charpentier.llb@gmail.com";
+$emailTo = "christine.charpentier.avocate@gmail.com";
+$from = "contact@christinecharpentier.com";
 
 verify_and_send();
 
@@ -29,7 +30,7 @@ function verify_and_send(){
 }
 
 function send_email($params){
-	$headers = 'From: '. $params["email"] . "\r\n" .
+	$headers = 'From: '. $GLOBALS['from'] . "\r\n" .
     'Reply-To: '. $params["email"] . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
