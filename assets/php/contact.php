@@ -2,7 +2,6 @@
 // your secret key
 $secret = "6LfZDw0TAAAAAM73HeWJNSjC3DtuOwNcp_KLhRP7";
 $emailTo = "christine.charpentier.avocate@gmail.com";
-$from = "contact@christinecharpentier.com";
 
 verify_and_send();
 
@@ -48,14 +47,16 @@ function valid_email($params){
 	}
 }
 
-function valid_captcha($reCaptchaResponse) {
-	if( !isset($reCaptchaResponse) ){
+function valid_captcha($captcha) {
+	$input = (is_null($captcha))? $captcha: trim($captcha);
+
+	if(empty($input)){
 		throw new InvalidArgumentException("Captcha response is empty");
 	}
 	// empty response
 	$response = null;
 	// check secret key
- 	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$GLOBALS['secret']."&response=".$reCaptchaResponse."&remoteip=".$_SERVER['REMOTE_ADDR']);
+ 	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$GLOBALS['secret']."&response=".$input."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	
 	if($response == null || $response.success != true){
 		throw new Exception("Captcha Failed");
