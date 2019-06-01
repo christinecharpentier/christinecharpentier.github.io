@@ -35,7 +35,7 @@ function send_email($params){
 
 	$status = mail($params["to"], $params["subject"], $params["message"], $headers);
 	if($status != TRUE){
-		throw new Exception("Cannot send the email");
+		throw new Exception("Impossible d'envoyer votre email");
 	}
 }
 
@@ -51,7 +51,7 @@ function valid_captcha($captcha) {
 	$input = (is_null($captcha))? $captcha: trim($captcha);
 
 	if(empty($input)){
-		throw new InvalidArgumentException("Captcha response is empty");
+		throw new InvalidArgumentException("Merci de fournir un Captcha. Cliquer a nouveau.");
 	}
 	// empty response
 	$response = null;
@@ -59,7 +59,7 @@ function valid_captcha($captcha) {
  	$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$GLOBALS['secret']."&response=".$input."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	
 	if($response == null || $response.success != true){
-		throw new Exception("Captcha Failed");
+		throw new Exception("Votre Captcha est invalide");
 	}
 }
 ?>
