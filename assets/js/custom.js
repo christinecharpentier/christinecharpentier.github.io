@@ -166,7 +166,8 @@
 							$('#contact-form .ajax-hidden').hide();
 							response.find(".alert-success").fadeIn(500).find(".message").html('Votre email a ete envoye');
   							
-						}).fail(function( jqXHR, textStatus ) {
+						}).fail(function( jqXHR, textStatus) {
+							console.log(jqXHR.responseJSON);
 							response.find(".alert-danger").fadeIn(500).find(".message").html(textStatus);
   							
 						});
