@@ -166,13 +166,8 @@
 							$('#contact-form .ajax-hidden').hide();
 							response.find(".alert-success").fadeIn(500).find(".message").html('Votre email a ete envoye');
   							
-						}).fail(function(jqXHR, textStatus) {
-							console.log(jqXHR);
-  						var data = jqXHR.responseJSON;
-    					console.log(data);
-		
-							response.find(".alert-danger").fadeIn(500).find(".message").html(textStatus);
-  							
+						}).fail(function(jqXHR, textStatus) {					
+							response.find(".alert-danger").fadeIn(500).find(".message").html(jqXHR.responseJSON.message);  						
 						});
 				}           
             	return false;
