@@ -2,6 +2,7 @@
 // your secret key
 $secret = "6LfZDw0TAAAAAM73HeWJNSjC3DtuOwNcp_KLhRP7";
 $emailTo = "christine.charpentier.avocate@gmail.com";
+$from = "contact@christinecharpentier.com"
 
 verify_and_send();
 
